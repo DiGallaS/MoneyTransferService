@@ -1,3 +1,0 @@
-2023-05-29 00:30:07.952  INFO 16444 --- [Test worker] r.n.m.repository.TransferRepositoryTest  : Starting TransferRepositoryTest using Java 17.0.5 on LAPTOP-TC9S7EU5 with PID 16444 (started by Galas in C:\Users\Galas\OneDrive\Рабочий стол\Project\MoneyTransferService)
-2023-05-29 00:30:07.955  INFO 16444 --- [Test worker] r.n.m.repository.TransferRepositoryTest  : No active profile set, falling back to 1 default profile: "default"
-2023-05-29 00:30:12.993  INFO 16444 --- [Test worker] r.n.m.repository.TransferRepositoryTest  : Started TransferRepositoryTest in 5.687 seconds (JVM running for 28.215)

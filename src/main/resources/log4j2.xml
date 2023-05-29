@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true"
+               name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+    <Properties>
+        <Property name="basePath">build\\logs</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="FILE" fileName="${basePath}/moneyTransfer.log" filePattern="${basePath}/moneyTransfer-%d{yyyy-MM-dd}.log" immediateFlush="true">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>

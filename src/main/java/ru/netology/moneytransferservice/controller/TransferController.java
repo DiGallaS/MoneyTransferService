@@ -16,10 +16,12 @@ import ru.netology.moneytransferservice.service.TransferService;
 
 import java.sql.Timestamp;
 
+
 @RestController
 @AllArgsConstructor
 public class TransferController {
-    private static final Logger LOG = LogManager.getLogger(TransferController.class);
+    private static final Logger log = LogManager.getLogger(TransferController.class);
+
 
     TransferService transferService;
 
@@ -30,7 +32,7 @@ public class TransferController {
         String msg = String.format("%s  Карта отправителя: %s;  Карта получателя: %s; Информация о переводе: %s",
                 new Timestamp(System.currentTimeMillis()), transferRequest.getCardFrom(),
                 transferRequest.getCardTo(), transferRequest.getAmount());
-        LOG.info(msg);
+        log.info(msg);
         return sendTransfer.getOperationId();
     }
 
@@ -44,7 +46,7 @@ public class TransferController {
         }
         String msg = String.format("%s  Подтверждение операции %s с кодом %s",
                 new Timestamp(System.currentTimeMillis()), confirmOperation.getOperationId(), confirmOperation.getCode());
-        LOG.info(msg);
+        log.info(msg);
         return transferService.confirmTransfer(confirmOperation.getOperationId());
     }
 
