@@ -2,7 +2,6 @@ package ru.netology.moneytransferservice.repository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ru.netology.moneytransferservice.model.ConfirmOperationRequest;
 import ru.netology.moneytransferservice.model.TransferRequest;
 import ru.netology.moneytransferservice.model.TransferResponse;
 import java.util.ArrayList;

@@ -24,6 +24,7 @@ public class TransferController {
     TransferService transferService;
 
     @PostMapping("/transfer")
+    @CrossOrigin(origins = "*")
     public TransferResponse save(@RequestBody TransferRequest transferRequest) {
         TransferRequest sendTransfer = transferService.saveTransfer(transferRequest);
         String msg = String.format("%s  Карта отправителя: %s;  Карта получателя: %s; Информация о переводе: %s",
@@ -35,6 +36,7 @@ public class TransferController {
 
 
     @PostMapping("/confirmOperation")
+    @CrossOrigin(origins = "*")
     public TransferResponse confirm(@RequestBody ConfirmOperationRequest confirmOperation) {
         String code = confirmOperation.getCode();
         if (code == null || code.isEmpty()) {

@@ -8,9 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.utility.DockerImageName;
+import org.testcontainers.images.builder.ImageFromDockerfile;
+
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MoneyTransferServiceApplicationTests {
@@ -19,8 +22,15 @@ public class MoneyTransferServiceApplicationTests {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
-	public static GenericContainer<?> app = new GenericContainer<>(DockerImageName.parse("moneytransferservice-webapp:latest")).
-			withExposedPorts(PORT);
+
+	public static GenericContainer<?> app = new GenericContainer<>(new ImageFromDockerfile()
+			.withFileFromPath(".", Paths.get("build/libs"))
+			.withDockerfileFromBuilder(builder -> builder
+					.from("adoptopenjdk/openjdk11:jre-11.0.13_8-alpine")
+							.expose(PORT)
+									.add("MoneyTransferService-0.0.1-SNAPSHOT.jar", "mts.jar")
+											.entryPoint("java", "-jar", "/mts.jar")
+													.build())).withExposedPorts(PORT);
 
 	@BeforeAll
 	public static void setUp() {
